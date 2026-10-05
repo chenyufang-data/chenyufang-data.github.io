@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CV | Chenyu Fang, Ph.D.</title>
+<meta name="description" content="Full CV of Chenyu Fang, Ph.D.: machine learning and AI engineer. Projects in forecasting, LLM evaluation and document AI, rare-signal research, skills, publications and education.">
+<link rel="canonical" href="https://cyfang.org/cv/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111418" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://cyfang.org/cv/">
+<meta property="og:title" content="CV | Chenyu Fang, Ph.D.">
+<meta property="og:description" content="Machine learning and AI engineer with a physics Ph.D.: forecasting, LLM evaluation, document AI and rare-signal research, in detail.">
+<meta property="og:image" content="https://cyfang.org/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    --bg: #f7f6f2; --surface: #ffffff; --ink: #1a1d21; --ink-2: #3a4049; --muted: #6a7280;
+    --line: #e2dfd7; --accent: #1d5c96; --accent-ink: #ffffff; --accent-soft: #e6eef6;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #111418; --surface: #171b20; --ink: #e8eaed; --ink-2: #c4c9d0; --muted: #8f98a3;
+            --line: #2a3038; --accent: #8ab8f0; --accent-ink: #0f1a26; --accent-soft: #1b2a3a; }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--sans); font-feature-settings: "tnum" 1; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 0 22px; }
+
+  .topbar { display: flex; justify-content: space-between; align-items: center; padding: 22px 0 0; font-size: 15px; }
+  .topbar a { text-decoration: none; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 15px; border-radius: 999px;
+         border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 500 14.5px/1 var(--sans); cursor: pointer; }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn svg { width: 15px; height: 15px; }
+
+  header { padding: 40px 0 26px; }
+  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 6vw, 46px); line-height: 1.05; letter-spacing: -.02em; margin: 0 0 8px; }
+  .role { font-size: 18px; color: var(--ink-2); margin: 0 0 14px; }
+  .contact { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 15px; color: var(--muted); margin: 0; padding: 0; list-style: none; }
+  .summary { font-size: 17.5px; line-height: 1.6; color: var(--ink-2); margin: 22px 0 0; }
+
+  nav.toc { position: sticky; top: 0; z-index: 4; background: var(--bg); border-bottom: 1px solid var(--line);
+            display: flex; gap: 18px; overflow-x: auto; padding: 12px 0; font-size: 14.5px; white-space: nowrap; }
+  nav.toc a { color: var(--muted); text-decoration: none; }
+  nav.toc a:hover { color: var(--accent); }
+
+  section { padding: 34px 0 6px; }
+  h2 { font: 600 13px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 22px; scroll-margin-top: 60px; }
+  article { margin: 0 0 40px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+  article:last-child { border-bottom: 0; }
+  .head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; }
+  h3 { font-family: var(--serif); font-weight: 400; font-size: 26px; line-height: 1.2; letter-spacing: -.01em; margin: 0; scroll-margin-top: 60px; }
+  .links { display: flex; gap: 14px; font-size: 15px; white-space: nowrap; }
+  .meta { color: var(--muted); font-size: 14.5px; margin: 4px 0 12px; }
+  .lead { margin: 0 0 14px; color: var(--ink-2); }
+  h4 { font: 600 14.5px/1.3 var(--sans); color: var(--ink); margin: 16px 0 8px; }
+  ul.pts { margin: 0 0 6px; padding: 0; list-style: none; }
+  ul.pts li { position: relative; padding-left: 20px; margin: 0 0 7px; color: var(--ink-2); }
+  ul.pts li::before { content: ""; position: absolute; left: 3px; top: .7em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: .75; }
+  .num { font-weight: 650; color: var(--ink); }
+  .nb { white-space: nowrap; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 14px 0 20px; list-style: none; }
+  .tags li { font: 500 12.5px/1 var(--mono); color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; }
+  .note { font-size: 14px; color: var(--muted); margin: 10px 0 18px; }
+
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline li { display: grid; grid-template-columns: 170px 1fr; gap: 4px 20px; padding: 0 0 18px; }
+  .timeline .when { color: var(--muted); font-size: 14.5px; padding-top: 2px; }
+  .timeline b { font-weight: 600; }
+  .timeline span.where { display: block; color: var(--muted); font-size: 14.5px; }
+  dl.skills { display: grid; grid-template-columns: 170px 1fr; gap: 10px 20px; margin: 0; }
+  dl.skills dt { color: var(--muted); }
+  dl.skills dd { margin: 0; color: var(--ink-2); }
+  .papers { list-style: none; padding: 0; margin: 0 0 14px; }
+  .papers li { margin: 0 0 14px; }
+  .papers .t { font-family: var(--serif); font-size: 18px; }
+  .papers .a { color: var(--muted); font-size: 14.5px; }
+
+  footer { border-top: 1px solid var(--line); margin-top: 20px; padding: 24px 0 60px; color: var(--muted); font-size: 14.5px;
+           display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+
+  @media (max-width: 620px) {
+    .timeline li, dl.skills { grid-template-columns: 1fr; }
+    .timeline li { gap: 0; }
+    h3 { font-size: 23px; }
+  }
+  @media print {
+    @page { margin: 14mm 14mm; }
+    :root { --bg: #fff; --surface: #fff; --ink: #000; --ink-2: #1d1d1d; --muted: #555; --line: #ccc; --accent: #1d4f80; }
+    body { font-size: 10.5pt; line-height: 1.45; }
+    .topbar, nav.toc, .tags { display: none; }
+    header { padding-top: 0; }
+    .summary { font-size: 11pt; margin-top: 12px; }
+    .role { font-size: 11.5pt; }
+    section { padding-top: 14px; }
+    article { margin-bottom: 16px; }
+    .head, h4, .meta { break-after: avoid-page; }
+    ul.pts li, .timeline li, .papers li { break-inside: avoid-page; }
+    ul.pts li::before { content: "\2022"; background: none; width: auto; height: auto; top: 0; left: 4px; opacity: 1; color: #333; }
+    h3 { font-size: 15pt; }
+    /* a project title never sits alone at the foot of a page (page breaks ignore flex rows, so print uses blocks) */
+    .head { display: block; break-after: avoid-page; }
+    .head .links { margin-top: 2px; }
+    h3 { break-after: avoid-page; }
+    a { color: var(--accent); text-decoration: none; }
+    .links a::after { content: " " attr(data-print); font-size: 9pt; color: #555; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="topbar">
+  <a href="../">← cyfang.org</a>
+  <button class="btn" type="button" onclick="window.print()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7"/></svg>
+    Save as PDF
+  </button>
+</div>
+
+<header>
+  <h1>Chenyu Fang, Ph.D.</h1>
+  <p class="role">Machine learning &amp; AI engineer · Physics Ph.D.</p>
+  <ul class="contact">
+    <li>Oklahoma, United States</li>
+    <li id="email">chenyu.fang.ml at gmail.com</li>
+    <li><a href="https://cyfang.org">cyfang.org</a></li>
+    <li><a href="https://www.linkedin.com/in/chenyu-fang-phd/">LinkedIn</a></li>
+    <li><a href="https://github.com/chenyufang-data">GitHub</a></li>
+  </ul>
+  <p class="summary">I take models from data to deployment and hold them to an honest baseline: time-series
+    forecasting, rare-event classification, and LLM applications with the evaluation that keeps them honest.
+    Seven years of Ph.D. research finding rare signals in simulated particle-physics data taught me to fix the
+    rules before looking at results; since 2026 I have applied that to forecasting, LLM grading and document AI.</p>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <a href="#projects">Projects</a><a href="#research">Research</a><a href="#experience">Experience</a>
+  <a href="#skills">Skills</a><a href="#publications">Publications</a><a href="#education">Education</a>
+</nav>
+
+<section>
+  <h2 id="projects">Projects</h2>
+
+  <article>
+    <div class="head">
+      <h3 id="gridcast">Gridcast: NYISO day-ahead load forecasting</h3>
+      <div class="links"><a href="https://gridcast.cyfang.org" data-print="gridcast.cyfang.org">Live demo</a><a href="https://github.com/chenyufang-data/gridcast" data-print="github.com/chenyufang-data/gridcast">Code</a></div>
+    </div>
+    <p class="meta">Personal project · 2026</p>
+    <p class="lead">Tomorrow's hourly electricity load for New York's 11 grid zones and the statewide total, forecast
+      before the day-ahead bid cutoff and scored every day against what actually happened. NYISO publishes its own
+      day-ahead forecast, which makes a hard, public baseline.</p>
+    <h4>What I built</h4>
+    <ul class="pts">
+      <li>A global Temporal Fusion Transformer trained across all 11 zones and the statewide total on cutoff-aligned
+        data, so the model only sees what would exist before the bid cutoff.</li>
+      <li>Served as ONNX through FastAPI on GCP, with daily ingestion, self-scoring against NYISO and a LightGBM
+        fallback.</li>
+      <li>Deployed to Kubernetes: a kind cluster in CI on every push, and a 72-hour GKE Autopilot trial with a
+        digest-pinned model image.</li>
+    </ul>
+    <h4>How it measures up</h4>
+    <ul class="pts">
+      <li>On par with NYISO's own day-ahead forecast over a 12-month backtest: <span class="num">4.80% vs. 4.85%</span>
+        average hourly error (MAPE), no significant difference under a paired bootstrap.</li>
+      <li><span class="num">53% lower error</span> than the best naive baseline.</li>
+      <li>20+ controlled experiments on features, history and models. Conformal calibration raised how often actual
+        load falls inside LightGBM's 80% forecast range from <span class="num">57% to 77%</span>, still short of the
+        80% target.</li>
+    </ul>
+    <h4>Decisions</h4>
+    <ul class="pts">
+      <li>Fixed the reporting rules before the first result.</li>
+      <li>Rejected a weather feed that scored better, because part of it arrives after the bid cutoff: in live use
+        it would not exist in time.</li>
+    </ul>
+    <ul class="tags"><li>PyTorch</li><li>Temporal Fusion Transformer</li><li>LightGBM</li><li>conformal prediction</li><li>ONNX</li><li>FastAPI</li><li>GCP</li><li>Kubernetes</li></ul>
+  </article>
+
+  <article>
+    <div class="head">
+      <h3 id="coach">MLE/AIE Interview Coach</h3>
+      <div class="links"><a href="https://coach.cyfang.org" data-print="coach.cyfang.org">Live demo</a><a href="https://github.com/chenyufang-data/mle-aie-interview-coach" data-print="github.com/chenyufang-data/mle-aie-interview-coach">Code</a></div>
+    </div>
+    <p class="meta">Personal project · 2026</p>
+    <p class="lead">A voice mock-interview app for ML and AI engineering interviews, grounded in rubrics and tailored
+      to each user's résumé and target job. Grading every answer with a frontier model is expensive, so the core
+      question was which grader to trust.</p>
+    <h4>What I built</h4>
+    <ul class="pts">
+      <li>The voice interview flow, rubric-grounded feedback, and hybrid BM25 + BGE retrieval: how often the right
+        passage ranks in the top 5 (Recall@5) rose from <span class="num">72% to 84%</span> on 61 paraphrased queries.</li>
+      <li>A deployed app with rate limits and usage budgets.</li>
+    </ul>
+    <h4>The grader study</h4>
+    <ul class="pts">
+      <li>598 Claude-labeled synthetic answers, question-grouped splits with about 20% held out per seed, five
+        seeds.</li>
+      <li>A LoRA-tuned Qwen3-4B agreed with Claude's grades at <span class="num">QWK 0.94</span>
+        (1.0 = perfect agreement), against 0.79 for the best baseline, and beat the scikit-learn graders on every
+        seed.</li>
+      <li>vLLM serves a grading call in <span class="num">30 ms</span> (p95).</li>
+    </ul>
+    <h4>Decisions</h4>
+    <ul class="pts">
+      <li>Hosted grading runs on DeepSeek: 94% of its grades fall within one point of Claude's, at about
+        <span class="num">1/200th of the cost</span>.</li>
+      <li>But DeepSeek gave the same grade twice only 57% of the time, so it never makes training labels.</li>
+    </ul>
+    <ul class="tags"><li>LLM evaluation</li><li>LoRA / PEFT</li><li>Qwen3-4B</li><li>vLLM</li><li>RAG</li><li>BM25 + BGE</li><li>FastAPI</li></ul>
+  </article>
+
+  <article>
+    <div class="head">
+      <h3 id="tender">AI Tender Evaluation Assistant</h3>
+      <div class="links"><a href="https://tender-eval-ai.github.io/tender-evaluation-assistant/" data-print="tender-eval-ai.github.io/tender-evaluation-assistant">Demo</a><a href="https://github.com/tender-eval-ai/tender-evaluation-assistant" data-print="github.com/tender-eval-ai/tender-evaluation-assistant">Code</a></div>
+    </div>
+    <p class="meta">Team project with a second engineer · Techlent Machine Learning Engineer Fellowship (training program) · 2026</p>
+    <p class="lead">Bids run to hundreds of pages, often scanned. The design: a vision model reads each form, a deterministic rule engine makes every decision, and every value is
+      cited to its page. I owned the FastAPI backend, the LLM gateway and the bid checks; my teammate built the
+      document parser, the form templates and the original review UI.</p>
+    <h4>What I built</h4>
+    <ul class="pts">
+      <li>Verification for every extracted value, by text-layer match or an independent second read; anything
+        unverified goes to a person.</li>
+      <li>An LLM gateway that filters model endpoints by each project's data class (synthetic, redacted,
+        confidential), with a cache, a per-project daily budget and a rate limit, so confidential documents never
+        reach a cloud model.</li>
+      <li>Postgres-backed jobs with checkpoints, approval pauses and rate-limit backoff, and a bounded search agent
+        tested against prompt injection.</li>
+      <li>Re-checking 10 bidders after a rule-set edit takes <span class="num">0 model calls</span>: the rule
+        engine re-decides on its own.</li>
+    </ul>
+    <h4>Results (synthetic data)</h4>
+    <ul class="pts">
+      <li>Rule drafting matched <span class="num">15/15</span> checklist items on a synthetic tender with no
+        unverified rules, for $0.02.</li>
+      <li>A full synthetic evaluation of four bids ran end to end on Azure OpenAI gpt-4.1-mini for about $0.14
+        (about 150 model calls). The first live run surfaced a token quota, a false disqualification and a
+        review-reason gap; each was fixed in a pull request.</li>
+    </ul>
+    <h4>Decisions</h4>
+    <ul class="pts">
+      <li>Chose the job runner with a 12-scenario fault-injection harness: Procrastinate and LangGraph both passed
+        all 7 must-pass gates, so the simpler Postgres queue won, with about <span class="num">5 s recovery</span>,
+        <span class="num">0 lost jobs</span> and no repeated model calls.</li>
+      <li>Shipped on Azure Container Apps with Entra ID sign-in, Key Vault, OIDC deploys that store no secrets and
+        scale-to-zero, plus a no-backend public demo; 735 Python, 108 component and 5 browser tests run in CI.</li>
+      <li>Audited and rewrote the 455-commit history for the public release (git filter-repo, gitleaks); the
+        repository is public under AGPL-3.0.</li>
+    </ul>
+    <p class="note">Every bid number on this page is on synthetic data; there is no real-bid result yet.</p>
+    <ul class="tags"><li>document AI</li><li>vision LLMs</li><li>guardrails</li><li>FastAPI</li><li>PostgreSQL</li><li>Procrastinate</li><li>Azure</li></ul>
+  </article>
+</section>
+
+<section>
+  <h2 id="research">Research</h2>
+
+  <article>
+    <div class="head">
+      <h3 id="benchmark">Rare-signal benchmark: XGBoost vs. LorentzNet vs. Particle Transformer</h3>
+      <div class="links"><a href="https://github.com/chenyufang-data/bsm-higgs-ml-benchmark" data-print="github.com/chenyufang-data/bsm-higgs-ml-benchmark">Code</a></div>
+    </div>
+    <p class="meta">Research Assistant (part-time), University of Oklahoma · 02/2026 to present</p>
+    <p class="lead">Does a modern network beat gradient boosting at finding a rare signal, and is the gain worth the
+      cost? Extended my published analysis with new background simulations to find out.</p>
+    <ul class="pts">
+      <li>Replaced random accept/reject tagging with probability weights validated against direct tagging, keeping
+        expected yields unbiased with a <span class="num nb">9&#8209;19x</span> larger effective sample.</li>
+      <li>Compared XGBoost, a re-implemented LorentzNet, a Particle Transformer (ParT) and a Deep Sets control on
+        identical splits under rules fixed in advance, three seeds and paired bootstraps.</li>
+      <li>ML beat the cut-based selection by <span class="num nb">9&#8209;21%</span> in expected significance, and
+        both networks beat XGBoost's AUC.</li>
+      <li>LorentzNet matched ParT at <span class="num">a tenth of its size</span> with 2x faster inference, while
+        Deep Sets fell below XGBoost: relational structure drives the gain. XGBoost trailed by under 0.01 AUC at
+        about 1/100th the training cost.</li>
+      <li>At the higher mass, limited simulation statistics, not the model, cap the result. Every study ran on a
+        resumable, hash-verified data pipeline.</li>
+    </ul>
+    <ul class="tags"><li>XGBoost</li><li>graph neural networks</li><li>transformers</li><li>importance weighting</li><li>bootstrap inference</li></ul>
+  </article>
+
+  <article>
+    <div class="head">
+      <h3 id="higgs">Higgs boson rare-signal detection</h3>
+      <div class="links"><a href="https://github.com/chenyufang-data/hep-ml-pipeline" data-print="github.com/chenyufang-data/hep-ml-pipeline">Code</a></div>
+    </div>
+    <p class="meta">Ph.D. research, University of Oklahoma · 08/2018 to 12/2025</p>
+    <ul class="pts">
+      <li>Designed a simulation-based search for a new particle: produced the collision datasets and tuned the
+        rule-based selection that was published and became the baseline for later ML models.</li>
+      <li>Python/C++ pipelines for multi-million-event simulated datasets; domain-informed features and XGBoost
+        classifiers that separate a rare signal from backgrounds about 10<sup>7</sup> times larger.</li>
+      <li>Evaluated with sample-weighted ROC/AUC and discovery significance, choosing thresholds on stable
+        validation plateaus rather than noisy peaks. The final model recovers
+        <span class="num">41.2% of signal at a 7.7% false-positive rate</span>, a projected 6.2σ result.</li>
+      <li>Interpreted with SHAP and feature ablations; packaged as a reproducible CLI with 69 tests, versioned model
+        releases tied to git commits and a 2&times;10<sup>&minus;6</sup> score regression check.</li>
+    </ul>
+    <ul class="tags"><li>Python</li><li>C++</li><li>XGBoost</li><li>SHAP</li><li>rare-event detection</li></ul>
+  </article>
+</section>
+
+<section>
+  <h2 id="experience">Experience</h2>
+  <ul class="timeline">
+    <li><span class="when">02/2026 to present</span><span><b>Research Assistant (part-time)</b><span class="where">University of Oklahoma, Norman, OK · the rare-signal benchmark above</span></span></li>
+    <li><span class="when">02/2026 to 09/2026</span><span><b>Machine Learning Engineer Fellowship (training program)</b><span class="where">Techlent, remote · team project: the AI Tender Evaluation Assistant</span></span></li>
+    <li><span class="when">08/2018 to 12/2025</span><span><b>Ph.D. Researcher</b><span class="where">University of Oklahoma, Norman, OK · Higgs boson rare-signal detection</span></span></li>
+  </ul>
+</section>
+
+<section>
+  <h2 id="skills">Skills</h2>
+  <dl class="skills">
+    <dt>Machine learning</dt><dd>PyTorch, scikit-learn, XGBoost, LightGBM, graph neural networks, transformers (TFT, ParT), time-series forecasting, conformal prediction, SHAP</dd>
+    <dt>Methods</dt><dd>Experimental design, bootstrap inference, importance weighting, uncertainty quantification, LLM evaluation</dd>
+    <dt>LLM systems</dt><dd>RAG and hybrid retrieval, LoRA / PEFT fine-tuning, distillation, vLLM, LangGraph, MCP, guardrails, vision-language models, document AI</dd>
+    <dt>Engineering</dt><dd>FastAPI, PostgreSQL / pgvector, job queues, Docker, Kubernetes (GKE, kind), ONNX, GitHub Actions, pytest, Linux, Git</dd>
+    <dt>Cloud</dt><dd>GCP (Vertex AI, Cloud Run), Azure (Container Apps, Entra ID, Key Vault), AWS</dd>
+    <dt>Languages</dt><dd>Python, C++, SQL</dd>
+  </dl>
+</section>
+
+<section>
+  <h2 id="publications">Publications and talks</h2>
+  <ul class="papers">
+    <li>
+      <a class="t" href="https://arxiv.org/abs/2511.19604">Enhanced Charged Higgs Signal at the LHC</a><br>
+      <span class="a"><b>C. Fang</b>, W.-S. Hou, C. Kao, M. Krab · arXiv:2511.19604 · 2025</span>
+    </li>
+    <li>
+      <a class="t" href="https://arxiv.org/abs/2511.08526">Charming top interactions with a neutral Higgs Boson decaying into τ<sup>+</sup>τ<sup>−</sup> at the LHC</a><br>
+      <span class="a"><b>C. Fang</b>, P. Gutierrez, C. Kao · arXiv:2511.08526 · 2025</span>
+    </li>
+  </ul>
+  <p class="note">Parallel talk, PHENO 2025 (particle-physics conference) · Avenir Graduate Fellowship (2023, 2024)</p>
+</section>
+
+<section>
+  <h2 id="education">Education</h2>
+  <ul class="timeline">
+    <li><span class="when">2018 to 2025</span><span><b>Ph.D. in Physics</b><span class="where">University of Oklahoma, Norman, OK</span></span></li>
+    <li><span class="when">2014 to 2018</span><span><b>B.S. in Physics</b><span class="where">Huazhong University of Science and Technology, Wuhan, China</span></span></li>
+  </ul>
+</section>
+
+<footer>
+  <span>© 2026 Chenyu Fang</span>
+  <a href="../">cyfang.org</a>
+</footer>
+
+</div>
+<script>
+  (function () {
+    var a = ["chenyu.fang.ml", "gmail.com"].join("@");
+    var li = document.getElementById("email");
+    li.textContent = "";
+    var link = document.createElement("a");
+    link.href = "mailto:" + a;
+    link.textContent = a;
+    li.appendChild(link);
+  })();
+</script>
+</body>
+</html>
