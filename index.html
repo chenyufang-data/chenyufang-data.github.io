@@ -220,19 +220,20 @@
     </div>
     <p class="sub">Team project with a second engineer · Techlent Machine Learning Engineer Fellowship (training program) · 2026</p>
     <p class="what">An LLM bid-review system where models only read, a deterministic rule engine decides, and
-      every value is cited to its page. I owned the FastAPI backend, the LLM gateway and the bid checks.</p>
+      each value cites its page. I owned the FastAPI backend, the LLM gateway, the bid checks and the evaluation.</p>
     <ul class="results">
-      <li>Every extracted value is verified by a text-layer match or an independent second read; anything
-        unverified goes to a person.</li>
-      <li>Chose a Postgres job queue over LangGraph after a 12-scenario fault-injection harness: about
-        <span class="num">5 s recovery</span> and <span class="num">0 lost jobs</span>.</li>
-      <li>On a synthetic tender, rule drafting matched <span class="num">15/15</span> checklist items with no
-        unverified rules, for $0.02.</li>
-      <li>Deployed on Azure Container Apps with Entra ID sign-in and OIDC deploys that store no secrets; the demo
-        needs no sign-in.</li>
+      <li>Tested on two real 62-page scanned bids against human-verified answer keys, one held out: read
+        <span class="num">14 of 14</span> prices, quantities and dates correctly with all three models tried.</li>
+      <li>On the held-out bid: <span class="num">13 of 13</span> required items found and
+        <span class="num">no wrongful disqualification</span>.</li>
+      <li>A local 8B vision model (Qwen3-VL on a 16 GB Mac mini, <span class="num">$0</span>) read as accurately
+        as gpt-4.1-mini and gpt-5-mini, which cost about $0.27-0.43 per tender.</li>
+      <li>A scorer that prints numbers only exposed 11 defects, each fixed with a test, including two paths to a
+        false disqualification; values cited on their own page rose from <span class="num">5/23 to 21/23</span>.</li>
     </ul>
-    <p class="note">All bid numbers are on synthetic data.</p>
-    <ul class="tags"><li>Document AI</li><li>FastAPI</li><li>PostgreSQL</li><li>Guardrails</li><li>Azure</li></ul>
+    <p class="note">The bids are redacted sample documents provided by the training program. Two bids is a small sample:
+      the numbers show the method, not a production rate.</p>
+    <ul class="tags"><li>Document AI</li><li>Qwen3-VL</li><li>LLM evaluation</li><li>FastAPI</li><li>PostgreSQL</li><li>Azure</li></ul>
   </article>
 </section>
 
@@ -285,7 +286,7 @@
   <h2 id="toolkit">Toolkit</h2>
   <dl class="toolkit">
     <dt>Machine learning</dt><dd>Python, PyTorch, scikit-learn, XGBoost, LightGBM, graph neural networks, transformers, time-series forecasting, uncertainty quantification</dd>
-    <dt>LLM systems</dt><dd>LLM evaluation, RAG and hybrid retrieval, LoRA fine-tuning, distillation, vLLM, LangGraph, MCP, guardrails</dd>
+    <dt>LLM systems</dt><dd>LLM evaluation, RAG and hybrid retrieval, LoRA fine-tuning, distillation, vLLM, Ollama, LangGraph, MCP, guardrails</dd>
     <dt>Engineering</dt><dd>FastAPI, PostgreSQL / pgvector, Docker, Kubernetes (GKE, kind), ONNX, GCP, Azure, AWS, GitHub Actions, pytest</dd>
   </dl>
 </section>

@@ -225,42 +225,69 @@
       <h3 id="tender">AI Tender Evaluation Assistant</h3>
       <div class="links"><a href="https://tender-eval-ai.github.io/tender-evaluation-assistant/" data-print="tender-eval-ai.github.io/tender-evaluation-assistant">Demo</a><a href="https://github.com/tender-eval-ai/tender-evaluation-assistant" data-print="github.com/tender-eval-ai/tender-evaluation-assistant">Code</a></div>
     </div>
-    <p class="meta">Team project with a second engineer · Techlent Machine Learning Engineer Fellowship (training program) · 2026</p>
-    <p class="lead">Bids run to hundreds of pages, often scanned. The design: a vision model reads each form, a deterministic rule engine makes every decision, and every value is
-      cited to its page. I owned the FastAPI backend, the LLM gateway and the bid checks; my teammate built the
-      document parser, the form templates and the original review UI.</p>
+    <p class="meta">Team project with a second engineer · Techlent Machine Learning Engineer Fellowship (training program) · 2026 · real-bid evaluation in October 2026</p>
+    <p class="lead">Bids run to hundreds of pages, often scanned. The design: a vision model reads each form, each
+      value is verified on the PDF's text layer or by an independent second read, and a deterministic rule engine
+      decides pass, review or disqualified, with each value citing its page. I owned the FastAPI backend, the LLM
+      gateway, the bid checks and the evaluation; my teammate built the document parser, the form templates and the
+      original review UI.</p>
     <h4>What I built</h4>
     <ul class="pts">
-      <li>Verification for every extracted value, by text-layer match or an independent second read; anything
-        unverified goes to a person.</li>
-      <li>An LLM gateway that filters model endpoints by each project's data class (synthetic, redacted,
-        confidential), with a cache, a per-project daily budget and a rate limit, so confidential documents never
-        reach a cloud model.</li>
+      <li>Verification for every extracted value: values the two reads disagree on go to a reviewer.</li>
+      <li>An LLM gateway that enforces data handling in code: confidential projects reach only local models, and
+        redacted samples reach only one cleared Azure endpoint, with a cache, a per-project daily budget and a rate
+        limit.</li>
       <li>Postgres-backed jobs with checkpoints, approval pauses and rate-limit backoff, and a bounded search agent
-        tested against prompt injection.</li>
-      <li>Re-checking 10 bidders after a rule-set edit takes <span class="num">0 model calls</span>: the rule
-        engine re-decides on its own.</li>
+        tested against prompt injection. Re-checking 10 bidders after a rule-set edit takes
+        <span class="num">0 model calls</span>.</li>
+      <li>The evaluation harness: one answer key per bid (a model prefilled it from the page images, I checked every
+        value and froze it with a SHA-256), a scorer that prints numbers only, and diagnostics that show a request's
+        shape (field names, counts, page numbers) but never document content.</li>
     </ul>
-    <h4>Results (synthetic data)</h4>
+    <h4>Results on two real bids</h4>
     <ul class="pts">
-      <li>Rule drafting matched <span class="num">15/15</span> checklist items on a synthetic tender with no
-        unverified rules, for $0.02.</li>
-      <li>A full synthetic evaluation of four bids ran end to end on Azure OpenAI gpt-4.1-mini for about $0.14
-        (about 150 model calls). The first live run surfaced a token quota, a false disqualification and a
-        review-reason gap; each was fixed in a pull request.</li>
+      <li>Two real tenders, each a 62-page scanned offer, about 70 scored values in all. Tender 1 was the development
+        bid; Tender 2 was held out and run once, at a recorded commit, with the local model.</li>
+      <li><span class="num">14 of 14</span> prices, quantities and dates read correctly, on both bids, with all three
+        models tried.</li>
+      <li>Held-out bid: <span class="num">13 of 13</span> items found present or absent,
+        <span class="num">no wrongful disqualification</span>, and 21 of 35 values exact overall: numbers and dates
+        5 of 5, with long free text the weak part. The bid check took 38 min 47 s, at $0.</li>
+      <li>Every value verification flagged on the held-out bid was indeed wrong (8 of 8), but it also accepted 8 wrong
+        values out of 29, which is why a person reviews.</li>
+      <li>Values cited on their own page, on multi-page forms: <span class="num">5 of 23 → 21 of 23</span> after a
+        separate locate step, developed on the development bid and measured on the held-out bid (after the fixes).</li>
+      <li>Same pipeline and keys on three models. Values exact: 23/38 and 21/35 for the local Qwen3-VL-8B, 20/38 and
+        18/35 for gpt-4.1-mini, 21/37 and 18/34 for gpt-5-mini. Per tender: $0 and about 55 min locally, about $0.27
+        and 6-9 min on gpt-4.1-mini, about $0.43 and 25 min on gpt-5-mini. The reasoning model drafted fuller rule
+        sets (about 25% fewer gaps) but sent many more checks to a person.</li>
     </ul>
     <h4>Decisions</h4>
     <ul class="pts">
+      <li>Rehearsed the whole local pipeline on a synthetic scanned bid first (15/15 items, 16/16 values, nothing
+        invented). It caught a reasoning-model runaway and an 8 GB hidden prompt cache before any real document was
+        used.</li>
+      <li>Fit the run on a 16 GB Mac mini: the instruct build of Qwen3-VL instead of a thinking build (those wrote
+        about 2,400 tokens of reasoning before a one-line answer), a dedicated Ollama server with the prompt cache
+        off, and a 32k context with an 8-bit KV cache at the memory cost of 16k.</li>
+      <li>Froze the commit and settings before the held-out bid and ran it once; later re-runs are labelled "after
+        the fixes".</li>
+      <li>Fixed all 11 defects the scorer exposed, each with a test. Two close paths to a false disqualification:
+        switching to a cloud model disqualified an offer over two blanks, because it answers "" where the local model
+        says null and the blank-safety rule only checked for null; and a form found on its pages but read as absent
+        now goes to review instead. One was my own regression, a fix that made the model mark 19 of 28 read fields
+        as blacked out; I measured it and fixed it.</li>
       <li>Chose the job runner with a 12-scenario fault-injection harness: Procrastinate and LangGraph both passed
-        all 7 must-pass gates, so the simpler Postgres queue won, with about <span class="num">5 s recovery</span>,
-        <span class="num">0 lost jobs</span> and no repeated model calls.</li>
-      <li>Shipped on Azure Container Apps with Entra ID sign-in, Key Vault, OIDC deploys that store no secrets and
-        scale-to-zero, plus a no-backend public demo; 735 Python, 108 component and 5 browser tests run in CI.</li>
-      <li>Audited and rewrote the 455-commit history for the public release (git filter-repo, gitleaks); the
-        repository is public under AGPL-3.0.</li>
+        all 7 must-pass gates, so the simpler Postgres queue won, with about <span class="num">5 s recovery</span>
+        and <span class="num">0 lost jobs</span>.</li>
+      <li>Shipped on Azure Container Apps with Entra ID sign-in, Key Vault and OIDC deploys that store no secrets,
+        plus a public no-backend demo; audited the 455-commit history for the public release (AGPL-3.0). About 750
+        Python, 19 Postgres, 119 Vitest and 5 Playwright tests run in CI.</li>
     </ul>
-    <p class="note">Every bid number on this page is on synthetic data; there is no real-bid result yet.</p>
-    <ul class="tags"><li>document AI</li><li>vision LLMs</li><li>guardrails</li><li>FastAPI</li><li>PostgreSQL</li><li>Procrastinate</li><li>Azure</li></ul>
+    <p class="note">The bids are redacted sample documents provided by the training program and cleared for
+      cloud-model testing; there is no client. Two bids is a small sample: the numbers show the method, not a
+      production rate, and no bid was decided without a person.</p>
+    <ul class="tags"><li>document AI</li><li>vision LLMs</li><li>Qwen3-VL</li><li>Ollama</li><li>LLM evaluation</li><li>guardrails</li><li>FastAPI</li><li>PostgreSQL</li><li>Azure</li></ul>
   </article>
 </section>
 
@@ -326,7 +353,7 @@
   <dl class="skills">
     <dt>Machine learning</dt><dd>PyTorch, scikit-learn, XGBoost, LightGBM, graph neural networks, transformers (TFT, ParT), time-series forecasting, conformal prediction, SHAP</dd>
     <dt>Methods</dt><dd>Experimental design, bootstrap inference, importance weighting, uncertainty quantification, LLM evaluation</dd>
-    <dt>LLM systems</dt><dd>RAG and hybrid retrieval, LoRA / PEFT fine-tuning, distillation, vLLM, LangGraph, MCP, guardrails, vision-language models, document AI</dd>
+    <dt>LLM systems</dt><dd>RAG and hybrid retrieval, LoRA / PEFT fine-tuning, distillation, vLLM, local models (Ollama), LangGraph, MCP, guardrails, vision-language models, document AI</dd>
     <dt>Engineering</dt><dd>FastAPI, PostgreSQL / pgvector, job queues, Docker, Kubernetes (GKE, kind), ONNX, GitHub Actions, pytest, Linux, Git</dd>
     <dt>Cloud</dt><dd>GCP (Vertex AI, Cloud Run), Azure (Container Apps, Entra ID, Key Vault), AWS</dd>
     <dt>Languages</dt><dd>Python, C++, SQL</dd>
